@@ -19,14 +19,27 @@ function App() {
       setTodos(todo)
       
     })
-
   },[])
+
+  let addTodo = (todo)=>{
+    //update data server side
+    fetch('http://localhost:3001/todo',{
+      method:"POST",
+      headers:{
+        'Content-Type':'application/json'
+      },
+      body: JSON.stringify(todo)
+    })
+
+    //update data client side
+    setTodos(prevState => [...prevState,todo])
+  }
   return (
     <div className="todo-app-container">
       <div className="todo-app">
         <h2>Todo App</h2>
 
-        <TodoForm/>
+        <TodoForm addTodo={addTodo}/>
         <TodoList todos={todos}/>
         <CheckAllAndRemain/>
 
