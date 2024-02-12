@@ -12,11 +12,11 @@ function App() {
   let[todos,setTodos] =useState([])
 
   useEffect(()=>{
-    fetch('http://localhost:3001/todo')
-    .then(res=>res.json())
-    .then((todo)=>{
+    fetch('http://localhost:3001/todo') //fetch 
+    .then(res=>res.json()) //json format change
+    .then((todo)=>{ //todo နဲ့လက်ခံ
       
-      setTodos(todo)
+      setTodos(todo) // useEffect ထဲထည့်
       
     })
   },[])
@@ -24,23 +24,23 @@ function App() {
   let addTodo = (todo)=>{
     //update data server side
     fetch('http://localhost:3001/todo',{
-      method:"POST",
+      method:"POST",// server ဘက်ပို့
       headers:{
-        'Content-Type':'application/json'
+        'Content-Type':'application/json'// json datatype
       },
-      body: JSON.stringify(todo)
+      body: JSON.stringify(todo)// json format နဲ့ပြန်ပို့
     })
 
     //update data client side
-    setTodos(prevState => [...prevState,todo])
+    setTodos(prevState => [...prevState,todo])  //{/* မူလရှိနေတဲ့ useState က prevState fun ကိုခေါ်  ‌array destructureထဲထည့်, အသစ်ဝင်လာတဲ့ todo object ကိုarrayထည့်*/}
   }
   return (
     <div className="todo-app-container">
       <div className="todo-app">
         <h2>Todo App</h2>
 
-        <TodoForm addTodo={addTodo}/>
-        <TodoList todos={todos}/>
+        <TodoForm addTodo={addTodo}/> {/* TodoForm ထဲပို့ */}
+        <TodoList todos={todos}/> {/* todos နာမည်နဲ့ ူTodolist ဆိပို့ */}
         <CheckAllAndRemain/>
 
       

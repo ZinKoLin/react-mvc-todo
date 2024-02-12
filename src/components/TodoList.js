@@ -1,15 +1,15 @@
 import React from 'react'
 
-function TodoList({todos}) {
+function TodoList({todos}) {  // {/* App js က todos နာမည်နဲံပို့တာကို လက်ခံ*/}
   return (
     <>
      <ul className="todo-list">
           {todos.map(todo=>(
             <li className="todo-item-container">
                 <div className="todo-item">
-                  <input type="checkbox" />
-                  <span className={`todo-item-label ${todo.completed ? 'line-through' : ''}`}>{todo.title}</span>
-                  {/* <input type="text" className="todo-item-input" value="Finish React Series" /> */}
+                  <input type="checkbox" />{/* className Dynamic*/}
+                  <span className={`todo-item-label ${todo.completed ? 'line-through' : ''}`}>{todo.title}</span>  {/* todoက completed tureဖြစ်ရင်လိုင်းနဲ့ပြ */}
+                 
                 </div>
                 <button className="x-button">
                   <svg
