@@ -34,13 +34,34 @@ function App() {
     //update data client side
     setTodos(prevState => [...prevState,todo])  //{/* မူလရှိနေတဲ့ useState က prevState fun ကိုခေါ်  ‌array destructureထဲထည့်, အသစ်ဝင်လာတဲ့ todo object ကိုarrayထည့်*/}
   }
+ 
+ 
+  //delet todo 
+  let deleteTodo = (todoId) =>{
+    //server side
+
+    fetch(`http://localhost:3001/todo/${todoId} `,//todoID
+    {
+      method:"DELETE"
+    })
+
+
+    //clinet side
+
+    setTodos(prevState =>{
+      return prevState.filter(todo=>{
+        return todo.id !== todoId //todo.id နဲ့ ဖျက်ချင်တဲ့ parameter က todoId မတူတာကို စစ်ထုက် 
+      });
+    })
+  }
+
   return (
     <div className="todo-app-container">
       <div className="todo-app">
         <h2>Todo App</h2>
 
         <TodoForm addTodo={addTodo}/> {/* TodoForm ထဲပို့ */}
-        <TodoList todos={todos}/> {/* todos နာမည်နဲ့ ူTodolist ဆိပို့ */}
+        <TodoList todos={todos} deleteTodo={deleteTodo}/> {/* todos နာမည်နဲ့ ူTodolist ဆိပို့ */}
         <CheckAllAndRemain/>
 
       
